@@ -37,7 +37,7 @@ const Home: React.FC = () => {
     <div style={{ display: "flex", minHeight: "100vh", flexDirection: "column", backgroundColor: appTheme.palette.background.main }}>
       <div style={{ flex: 0.25, display: "flex", justifyContent: "center", alignItems: "center" }}>
         <h1 style={{color: appTheme.palette.text.tertiary}}>
-          Thousand Words Poetry
+          Thousand Words Poetry (demo)
         </h1>
       </div>
       <div style={{ display: "flex", flex: 1}} >
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
           <div style={{ flex: 0.75, backgroundColor: appTheme.palette.color1, padding: "2em" }}>
             <h3>{poem.title}</h3>
             <h5>{poem.author}</h5>
-            <p>{poem.content}</p>
+            <p style={{whiteSpace: "pre-wrap"}}><pre>{poem.content}</pre></p>
             <ul>
               {significantWords.map(word => {
                 return (

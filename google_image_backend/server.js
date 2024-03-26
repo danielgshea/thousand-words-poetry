@@ -3,6 +3,9 @@ const axios = require("axios");
 const cors = require("cors");
 const app = express();
 const PORT = 5500;
+require('dotenv').config();
+
+const super_secret_serp_key = process.env.SERP_API;
 
 // Enable CORS for all origins
 app.use(cors());
@@ -13,12 +16,10 @@ app.use(express.json());
 // Define route to fetch images from SerpApi Google Image API
 app.get("/api/images", async (req, res) => {
   try {
-    const { query } = req.query; // Get query from request URL
-    const apiKey =
-      "404bc64f2fc05cdbbf23575e811354b405b9c6cb9cf379d3f0afd6ccbda7b991"; // Your SerpApi API key
+    const { query } = req.query; // Get query from request URL // Your SerpApi API key
 
     const params = {
-      api_key: apiKey,
+      api_key: super_secret_serp_key,
       engine: "google",
       q: query,
       google_domain: "google.com",

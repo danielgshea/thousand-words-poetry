@@ -29,6 +29,6 @@ def extract_significant_words(poem):
     return top_words
 
 # Example usage
-poem = "Your poem text here..."
-significant_words = extract_significant_words(poem)
-print("Significant Words:", significant_words)
+# poem = "Your poem text here..."
+# significant_words = extract_significant_words(poem)
+# print("Significant Words:", significant_words)
