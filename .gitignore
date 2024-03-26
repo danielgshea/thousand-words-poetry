@@ -3,9 +3,11 @@
 # dependencies
 /node_modules
 ./node_modules
+google_image_backend/node_modules
 /.pnp
-./_pycache_
+flask_app/_pycache_
 .pnp.js
+react_app/node_modules
 
 # testing
 /coverage
