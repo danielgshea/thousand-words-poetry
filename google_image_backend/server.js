@@ -21,7 +21,7 @@ app.get("/api/images", async (req, res) => {
     const params = {
       api_key: super_secret_serp_key,
       engine: "google",
-      q: query,
+      q: query + ` art representation`,
       google_domain: "google.com",
       hl: "en",
       tbm: "isch",

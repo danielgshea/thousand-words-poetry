@@ -5,7 +5,7 @@
 ./node_modules
 google_image_backend/node_modules
 /.pnp
-flask_app/_pycache_
+flask_app/__pycache__
 .pnp.js
 react_app/node_modules
 

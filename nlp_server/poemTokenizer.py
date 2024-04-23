@@ -27,8 +27,3 @@ def extract_significant_words(poem):
     top_words = [word for word, _ in ranked_words[:6]]
 
     return top_words
-
-# Example usage
-# poem = "Your poem text here..."
-# significant_words = extract_significant_words(poem)
-# print("Significant Words:", significant_words)

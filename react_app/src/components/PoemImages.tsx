@@ -30,9 +30,11 @@ const PoemImages: React.FC<PoemImagesProps> = ({ keywords }) => {
   }, [keywords]);
 
   return (
-    <div className="image-gallery" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "10px" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "10px" }}>
       {images.map((imageUrl, index) => (
+        <div key={index} style={{border: "7px solid white", display: "flex", alignItems: "center"}}>
         <img key={index} src={imageUrl} alt={`${index}`} style={{ width: "100%", height: "auto", objectFit: "cover" }} />
+        </div>
       ))}
     </div>
   );

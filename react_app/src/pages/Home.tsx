@@ -28,10 +28,6 @@ const Home: React.FC = () => {
       console.error("Error analyzing poem:", error);
     }
   };
-
-  console.log(significantWords);
-
-  // get images from significant words
   
   return (
     <div style={{ display: "flex", minHeight: "100vh", flexDirection: "column", backgroundColor: appTheme.palette.background.main }}>
