@@ -5,37 +5,69 @@ interface PoemImagesProps {
   keywords: string[];
 }
 
+interface Image {
+  id: string,
+  src: string,
+  class: string[],
+  height: number,
+  width: number,
+  alt: string,
+}
+
 const PoemImages: React.FC<PoemImagesProps> = ({ keywords }) => {
-  const [images, setImages] = React.useState<string[]>([]);
+  const [images, setImages] = React.useState<Image[]>([]);
 
   useEffect(() => {
-    setImages([]);
-    const fetchImages = async (keyword: string) => {
+    const getImages = async (searchString: string) => {
       try {
-        const response = await axios.get("http://localhost:5500/api/images", {
-          params: {
-            query: keyword, // Replace with your search query
-          },
-        });
-        const newImages = (response.data.images_results.map((image: { original: string; }) => image.original)).splice(0, 3);
-        setImages((prevImages) => [...prevImages, ...newImages]);
+        const input = {
+          query: searchString,
+        };
+        const response = await axios.post(
+          "http://localhost:5000/img_urls",
+          input
+        );
+        const initialImages: Image[] = response.data.img_urls;
+        const filteredImages = initialImages.filter(image => image.height >= 100 && image.width >= 100);
+        setImages(filteredImages);
       } catch (error) {
-        console.error("Error fetching images:", error);
+        console.error("Error getting images from image_scraper", error);
       }
     };
 
-    for (let i = 0; i < keywords.length; i++) {
-        fetchImages(keywords[i]);
-    }
-  }, [keywords]);
+    getImages("bananas");
+  }, []);
+
+
+  
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "10px" }}>
-      {images.map((imageUrl, index) => (
-        <div key={index} style={{border: "7px solid white", display: "flex", alignItems: "center"}}>
-        <img key={index} src={imageUrl} alt={`${index}`} style={{ width: "100%", height: "auto", objectFit: "cover" }} />
-        </div>
-      ))}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+        gap: "10px",
+      }}
+    >
+      {images != null
+        ? images.splice(0, 20).map((image, index) => (
+            <div
+              key={index}
+              style={{
+                border: "7px solid white",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <img
+                key={index}
+                src={image.src}
+                alt={`${index}`}
+                style={{ width: "100%", height: "auto", objectFit: "cover" }}
+              />
+            </div>
+          ))
+        : null}
     </div>
   );
 };
