@@ -35,7 +35,8 @@ const PoemImages: React.FC<PoemImagesProps> = ({ keywords }) => {
       }
     };
     keywords.forEach(keyword => {
-      getImages(keyword);
+      // getImages(keyword);
+      console.log("keyword I am getting image for: ", keyword);
     });
   }, []);
 

@@ -1,12 +1,18 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import appTheme from '../theme/theme';
-import { poems, poem } from '../poems/poems';
+import { poems } from '../poems/poems';
+import { Link } from 'react-router-dom';
 
-type Props = {
-    handleSet: (poem: poem) => void;
-};
+const MyComponent: React.FC = () => {
 
-const MyComponent: React.FC<Props> = ({ handleSet }) => {
+    const goToPoem = (id: string) => {
+
+    }
+
+    const poems: {title: string, author: string, content: string, id: string}[] = [
+        {title: "NA", author: "NA", content: "NA", id: "2305928039580egjw"}
+    ]
+
     return (
         <div style={{display: "flex", backgroundColor: appTheme.palette.background.secondary, height: "100%", padding: "10px"}}>
             <div style={{flex: "1"}}>
@@ -15,9 +21,11 @@ const MyComponent: React.FC<Props> = ({ handleSet }) => {
                     {poems.map(poem => {
                         return(
                             <div key={poem.title} style={{marginBottom: "10px"}}>
-                            <button style ={{backgroundColor: appTheme.palette.color3}}onClick={() => handleSet(poem)}>
+                                <Link to={`/poem/${poem.id}`}>
+                            <button style ={{backgroundColor: appTheme.palette.color3}} onClick={() => goToPoem(poem.id)}>
                                 <h5>{poem.title}</h5>
                             </button>
+                            </Link>
                             </div>
                         )
                     })}

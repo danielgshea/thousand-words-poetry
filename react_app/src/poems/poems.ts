@@ -1,10 +1,13 @@
-export type poem = {
-  title: string;
-  author: string;
-  content: string;
-};
+import Poem from "./Poem"
 
-export const poems: poem[] = [
+export class PoetryList {
+  poems: Poem[];
+  constructor() {
+    this.poems = [];
+  }
+}
+
+export const poems: {title: string, author: string, content: string}[] = [
   {
     title: "Ghalib Select Couplets: 126, 6",
     author: "Ghalib",

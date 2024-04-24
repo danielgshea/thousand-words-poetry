@@ -3,18 +3,15 @@ import axios from "axios";
 import PoemImages from "../components/PoemImages";
 import appTheme from "../theme/theme";
 import PoemList from "../components/PoemList";
-import { poems, poem } from "../poems/poems";
+import { poems } from "../poems/poems";
+
+type poem = {
+  title: string,
+  author: string,
+  content: string
+}
 
 const Home: React.FC = () => {
-
-  // get poetry and significant words
-  const [poem, setPoem] = React.useState<poem>(poems[0]);
-  const [significantWords, setSignificantWords] = React.useState<string[]>([]);
-
-  const handleLoadPoem = async (poem: poem) => {
-    setPoem(poem);
-    await analyzePoem(poem.content);
-  }
 
   const analyzePoem = async (content: string) => {
     try {
@@ -23,7 +20,7 @@ const Home: React.FC = () => {
         poem: content,
       }
       const response = await axios.post("http://localhost:4500/analyze-poem", input);
-      setSignificantWords(response.data.significant_words);
+      // setSignificantWords(response.data.significant_words);
     } catch (error) {
       console.error("Error analyzing poem:", error);
     }
@@ -38,20 +35,7 @@ const Home: React.FC = () => {
       </div>
       <div style={{ display: "flex", flex: 1}} >
           <div style={{ flex: 0.25 }}>
-            <PoemList handleSet={handleLoadPoem} />
-          </div>
-          <div style={{ flex: 0.75, backgroundColor: appTheme.palette.color1, padding: "2em" }}>
-            <h3>{poem.title}</h3>
-            <h5>{poem.author}</h5>
-            <p style={{whiteSpace: "pre-wrap"}}><pre>{poem.content}</pre></p>
-            <ul>
-              {significantWords.map(word => {
-                return (
-                  <li>{word}</li>
-                )
-              })}
-            </ul>
-            <PoemImages keywords={significantWords}/>
+            <PoemList />
           </div>
       </div>
     </div>
