@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       const input = {
         poem: content,
       }
-      const response = await axios.post("http://localhost:5000/analyze-poem", input);
+      const response = await axios.post("http://localhost:4500/analyze-poem", input);
       setSignificantWords(response.data.significant_words);
     } catch (error) {
       console.error("Error analyzing poem:", error);

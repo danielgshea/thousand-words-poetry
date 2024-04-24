@@ -29,13 +29,14 @@ const PoemImages: React.FC<PoemImagesProps> = ({ keywords }) => {
         );
         const initialImages: Image[] = response.data.img_urls;
         const filteredImages = initialImages.filter(image => image.height >= 100 && image.width >= 100);
-        setImages(filteredImages);
+        setImages(prevImages => [...prevImages, ...filteredImages]);
       } catch (error) {
         console.error("Error getting images from image_scraper", error);
       }
     };
-
-    getImages("bananas");
+    keywords.forEach(keyword => {
+      getImages(keyword);
+    });
   }, []);
 
 

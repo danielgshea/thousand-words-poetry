@@ -15,4 +15,4 @@ def analyze_poem():
     return jsonify({'significant_words': significant_words})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="localhost", port=4500)
